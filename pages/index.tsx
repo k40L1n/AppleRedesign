@@ -7,7 +7,7 @@ import { Tab } from "@headlessui/react"
 
 const Home: NextPage = () => {
   return (
-    <div className=''>
+    <div className='bg-[#e7ecee]'>
       <Head>
         <title>Apple Redesign</title>
         <link rel='icon' href='/favicon.ico' />

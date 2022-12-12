@@ -8,5 +8,6 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  //   const categories = await sanityClient.fetch(query)
+  const categories = await sanityClient.fetch(query)
 }
+ 
