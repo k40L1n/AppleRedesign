@@ -1,5 +1,5 @@
 import React from "react"
-import Image from "next/image"
+import Image from "next/legacy/image"
 import Button from "../components/Button"
 
 function Landing() {
@@ -13,7 +13,7 @@ function Landing() {
           <span className='block'>By Intellect</span>
           <span className='block'>Driven by Values</span>
         </h1>
-        <div>
+        <div className='space-x-8'>
           <Button title='Buy Now' />
           <a href='' className='link'>
             Learn More
