@@ -4,6 +4,7 @@ export const fetchCategories = async () => {
   )
 
   const data = await res.json()
-  console.log(data)
+  const categories: Category[] = data.categories
+
+  return categories
 }
- 
