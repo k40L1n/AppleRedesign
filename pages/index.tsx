@@ -2,15 +2,24 @@ import type { GetServerSideProps, NextPage } from "next"
 import Head from "next/head"
 import Header from "../components/Header"
 import Landing from "../components/Landing"
+import Product from "../components/Product"
 import { Tab } from "@headlessui/react"
 import { fetchCategories } from "../utils/fetchCategories"
+import { fetchProducts } from "../utils/fetchProducts"
 
 interface Props {
   categories: Category[]
+  products: Product[]
 }
 
-const Home = ({ categories }: Props) => {
-  console.log("categories", categories)
+const Home = ({ categories, products }: Props) => {
+  // filter product by category
+  const showProducts = (category: number) => {
+    return products
+      .filter((product) => product.category._ref === categories[category]._id)
+      .map((product) => <Product product={product} key={product._id} />)
+  }
+
   return (
     <div className='bg-[#e7ecee]'>
       <Head>
@@ -46,10 +55,10 @@ const Home = ({ categories }: Props) => {
               ))}
             </Tab.List>
             <Tab.Panels className='mx-auto max-w-fit pt-10 pb-24 sm:px-4'>
-              {/* <Tab.Panel className='text-white'>{showProducts(0)}</Tab.Panel>
+              <Tab.Panel className='text-white'>{showProducts(0)}</Tab.Panel>
               <Tab.Panel className='text-white'>{showProducts(1)}</Tab.Panel>
               <Tab.Panel className='text-white'>{showProducts(2)}</Tab.Panel>
-              <Tab.Panel className='text-white'>{showProducts(3)}</Tab.Panel> */}
+              <Tab.Panel className='text-white'>{showProducts(3)}</Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
         </div>
@@ -65,9 +74,12 @@ export default Home
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
   // fetch categories
   const categories = await fetchCategories()
+  const products = await fetchProducts()
+
   return {
     props: {
       categories,
+      products,
     },
   }
 }

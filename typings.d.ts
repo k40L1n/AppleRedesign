@@ -33,7 +33,7 @@ interface Product {
   }
   description: string
   category: {
-    _type: "refere"
+    _type: "reference"
     _ref: string
   }
   image: Image[]

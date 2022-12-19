@@ -5,7 +5,7 @@ import { sanityClient } from "../../sanity"
 const query = groq`*[_type == "category"]{
   _id,
   ...
-}`
+} | order(_createdAt asc)`
 
 type Data = {
   categories: Category[]
